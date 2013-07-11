@@ -1,6 +1,6 @@
 # WriteexcelOnRails
 
-TODO: Write a gem description
+[writeexcel](https://github.com/cxn03651/writeexcel) for rails gems
 
 ## Installation
 
@@ -18,8 +18,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add support for the new format in your controller:
+```ruby
+class HomeController < ApplicationController
 
+  def index
+    respond_to do |format|
+      format.html
+      format.xls { render :xls => "<filename>"}
+    end
+  end
+end
+```
+Create an xls view app/views/home/index.rxls:
+```html
+worksheet  = workbook.add_worksheet("title")
+worksheet.write(1, 1, 'Hi Excel.')
+```
 ## Contributing
 
 1. Fork it
@@ -27,3 +42,6 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Acknowledgment
+[spreadsheet_on_rails](https://github.com/10to1/spreadsheet_on_rails)
